@@ -5,6 +5,7 @@ var displayEl = document.querySelector(".pokemon-display");
 formEl.addEventListener('submit', function (event) {
     event.preventDefault();
     var pokemonName = searchEl.value.trim();
+    pokemonName = pokemonName.toLowerCase()
     console.log(pokemonName);
 
     var requestUrl = 'https://pokeapi.co/api/v2/pokemon/' + pokemonName;
