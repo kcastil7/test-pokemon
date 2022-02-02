@@ -4,13 +4,16 @@ var displayEl = document.querySelector(".pokemon-display");
 var weatherDisplayEl = document.querySelector(".weather-display");
 var lat;
 var long;
+var weatherAPI = "";
+
 navigator.geolocation.getCurrentPosition(function(pos){  
     console.log(pos.coords.latitude);
     console.log(pos.coords.longitude);
     lat = pos.coords.latitude;
     long = pos.coords.longitude;
 
-    var requestWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&appid=768cc27c948107a969018f5a25542700";
+
+    var requestWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&appid=" + weatherAPI;
     fetch(requestWeatherUrl)
     .then(function(response){
         return response.json();
