@@ -1,6 +1,41 @@
 var searchEl = document.querySelector(".poke-name");
 var formEl = document.querySelector(".pokemon");
 var displayEl = document.querySelector(".pokemon-display");
+var weatherDisplayEl = document.querySelector(".weather-display");
+var lat;
+var long;
+navigator.geolocation.getCurrentPosition(function(pos){  
+    console.log(pos.coords.latitude);
+    console.log(pos.coords.longitude);
+    lat = pos.coords.latitude;
+    long = pos.coords.longitude;
+
+    var requestWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&appid=768cc27c948107a969018f5a25542700";
+    fetch(requestWeatherUrl)
+    .then(function(response){
+        return response.json();
+
+    })
+    .then(function(data){
+        weatherDisplayEl.textContent = "";
+        var weather = document.createElement('p');
+        weather.textContent = "The Weather in " + data.name + " is " + data.weather[0].main;
+        weatherDisplayEl.append(weather);
+
+
+    })
+    .catch(function (error){
+        console.log(error);
+    });
+
+    });
+
+//api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+
+
+
+
+
 
 formEl.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -47,26 +82,26 @@ formEl.addEventListener('submit', function (event) {
 
 });
 
-var pokemonArr = [];
-for (var i = 1; i <=151;i++){
+// var pokemonArr = [];
+// for (var i = 1; i <=151;i++){
 
-    var requesArrtUrl = 'https://pokeapi.co/api/v2/pokemon/' + i;
+//     var requesArrtUrl = 'https://pokeapi.co/api/v2/pokemon/' + i;
 
-    fetch(requesArrtUrl)
-    .then(function(response){
-        return response.json();
+//     fetch(requesArrtUrl)
+//     .then(function(response){
+//         return response.json();
 
-    }).then(function(data) {
+//     }).then(function(data) {
         
-        console.log(data.name);
-        console.log(data.types[0].type.name);
-        var poketype = {name:data.name,type:data.types[0].type.name};
-        pokemonArr.push(poketype);
+//         console.log(data.name);
+//         console.log(data.types[0].type.name);
+//         var poketype = {name:data.name,type:data.types[0].type.name};
+//         pokemonArr.push(poketype);
     
-    }).catch(function(error){
-        console.log(error);
-    });
+//     }).catch(function(error){
+//         console.log(error);
+//     });
     
 
-}
-console.log(pokemonArr);
+// }
+// console.log(pokemonArr);
