@@ -4,7 +4,7 @@ var displayEl = document.querySelector(".pokemon-display");
 var weatherDisplayEl = document.querySelector(".weather-display");
 var lat;
 var long;
-var weatherAPI = "";
+var weatherAPI = config.weatherKey;
 
 navigator.geolocation.getCurrentPosition(function(pos){  
     console.log(pos.coords.latitude);
