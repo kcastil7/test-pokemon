@@ -29,12 +29,14 @@ formEl.addEventListener('submit', function (event) {
             height.textContent = "Height: " + data.height;
             var weight = document.createElement("p");
             weight.textContent = "Weight: " + data.weight;
-
+            var type = document.createElement("p");
+            type.textContent = "Type: " + data.types[0].type.name;
 
             displayEl.append(name);
             displayEl.append(img);
             displayEl.append(height);
             displayEl.append(weight);
+            displayEl.append(type);
 
 
         })
@@ -45,4 +47,26 @@ formEl.addEventListener('submit', function (event) {
 
 });
 
+var pokemonArr = [];
+for (var i = 1; i <=151;i++){
 
+    var requesArrtUrl = 'https://pokeapi.co/api/v2/pokemon/' + i;
+
+    fetch(requesArrtUrl)
+    .then(function(response){
+        return response.json();
+
+    }).then(function(data) {
+        
+        console.log(data.name);
+        console.log(data.types[0].type.name);
+        var poketype = {name:data.name,type:data.types[0].type.name};
+        pokemonArr.push(poketype);
+    
+    }).catch(function(error){
+        console.log(error);
+    });
+    
+
+}
+console.log(pokemonArr);
