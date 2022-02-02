@@ -4,7 +4,7 @@ var displayEl = document.querySelector(".pokemon-display");
 var weatherDisplayEl = document.querySelector(".weather-display");
 var lat;
 var long;
-var weatherAPI = "768cc27c948107a969018f5a25542700";
+// var weatherAPI = config.weatherKey;
 
 navigator.geolocation.getCurrentPosition(function(pos){  
     console.log(pos.coords.latitude);
@@ -13,23 +13,23 @@ navigator.geolocation.getCurrentPosition(function(pos){
     long = pos.coords.longitude;
 
 
-    var requestWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&appid=" + weatherAPI;
-    fetch(requestWeatherUrl)
-    .then(function(response){
-        return response.json();
+    // var requestWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&appid=" + weatherAPI;
+    // fetch(requestWeatherUrl)
+    // .then(function(response){
+    //     return response.json();
 
-    })
-    .then(function(data){
-        weatherDisplayEl.textContent = "";
-        var weather = document.createElement('p');
-        weather.textContent = "The Weather in " + data.name + " is " + data.weather[0].main;
-        weatherDisplayEl.append(weather);
+    // })
+    // .then(function(data){
+    //     weatherDisplayEl.textContent = "";
+    //     var weather = document.createElement('p');
+    //     weather.textContent = "The Weather in " + data.name + " is " + data.weather[0].main;
+    //     weatherDisplayEl.append(weather);
 
 
-    })
-    .catch(function (error){
-        console.log(error);
-    });
+    // })
+    // .catch(function (error){
+    //     console.log(error);
+    // });
 
     }, function(){
         console.log("enable location");
