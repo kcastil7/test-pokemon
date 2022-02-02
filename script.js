@@ -28,6 +28,12 @@ navigator.geolocation.getCurrentPosition(function(pos){
         console.log(error);
     });
 
+    }, function(){
+        console.log("enable location");
+        weatherDisplayEl.textContent = "";
+        var weather = document.createElement('p');
+        weather.textContent = "Please enable location services to experience the full pokemon experience";
+        weatherDisplayEl.append(weather);
     });
 
 //api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
